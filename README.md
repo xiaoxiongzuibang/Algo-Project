@@ -1,6 +1,6 @@
 # 交流区域
 ### GUI.py需要：
-1. 
+1. 为了可视化初始board，需要一个函数允许我获得初始随机生成的字母，例如`letter_matrix = function(...)`, letter_matrix可以是一个数字矩阵或字符串矩阵，格式为ndarray。
 
 ### Game.py需要：
 1. 
