@@ -15,6 +15,14 @@ class Game:
         board = [[rnd.choices(self.alphabet,self.probability) [0]
                   for _ in range(4)] for _ in range(4)]
         return board
+    def check_word_1(self,input_word):
+        result_list = []
+        for item in input_words:
+            if item in self.words:
+                result_list.append(1)
+            else:
+                result_list.append(0)
+        return result_list
 
 
 
