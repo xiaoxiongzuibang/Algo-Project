@@ -1,4 +1,4 @@
-# 交流区域
+# README
 <img width="996" alt="截屏2025-02-14 14 59 46" src="https://github.com/user-attachments/assets/e5ec02ab-e5c5-4335-9879-15dea71b6b9f" />
 
 ### GUI.py需要：
