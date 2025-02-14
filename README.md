@@ -1,4 +1,6 @@
 # 交流区域
+<img width="996" alt="截屏2025-02-14 14 59 46" src="https://github.com/user-attachments/assets/e5ec02ab-e5c5-4335-9879-15dea71b6b9f" />
+
 ### GUI.py需要：
 1. 为了可视化初始board，需要一个函数允许我获得初始随机生成的字母，例如`letter_matrix = function(...)`, letter_matrix可以是一个数字矩阵或字符串矩阵，格式为ndarray。
 
