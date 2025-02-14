@@ -1,10 +1,12 @@
 # README
 
-Important update: 更新数据库
+Important update: 数据库已更新
+  moodle 上发了新的词典，我已经调整完 CreatSet 了，GUI 部分如有相关部分记得调整
+  新版的词典：“b" 识别为 False ； 没有音符号
 
-Important update: 更新数据库
+Important update: 数据库已更新
 
-Important update: 更新数据库
+Important update: 数据库已更新
 <img width="996" alt="截屏2025-02-14 14 59 46" src="https://github.com/user-attachments/assets/e5ec02ab-e5c5-4335-9879-15dea71b6b9f" />
 
 
