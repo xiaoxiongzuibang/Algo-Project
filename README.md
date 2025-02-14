@@ -1,6 +1,9 @@
 # README
 <img width="996" alt="截屏2025-02-14 14 59 46" src="https://github.com/user-attachments/assets/e5ec02ab-e5c5-4335-9879-15dea71b6b9f" />
 
+Important update: 更新数据库
+
+
 ### GUI.py需要：
 1. 为了可视化初始board，需要一个函数允许我获得初始随机生成的字母，例如`letter_matrix = function(...)`, letter_matrix可以是一个数字矩阵或字符串矩阵，格式为ndarray。
 
@@ -19,11 +22,10 @@
 
 ### 第二阶段
 
-1. 遍历棋盘：
-    对于每一个字母周围开始剪枝
-2.  找出符合要求的“单词”
-3.  生成最大可能单词数
-4.  对比输入，找出遗漏
+1. 对于french——words构建剪枝树（game）
+2. 遍历棋盘，生成正确的单词（game）
+3. 生成最大可能单词数（game）
+4.  对比输入，找出遗漏 （UI）
 
 ### 第三阶段（附加功能）
 
