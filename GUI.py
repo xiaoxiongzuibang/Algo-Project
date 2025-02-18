@@ -1,5 +1,12 @@
 from tkiteasy import *
 import tkinter as tk
+import pandas as pd
+
+df = pd.read_csv('./dictionnaire_fr.csv')
+french_words = set(df.iloc[:, 0])
+
+# data = {"word": ["nul", "non"]}
+# french_words = set(pd.DataFrame(data).iloc[:, 0])
 
 class GUI:
     def __init__(self, game):
@@ -33,8 +40,29 @@ class GUI:
         self.word_list.append(word)
 
     def soumettre_command(self):
+        for i in range(len(self.word_list)):
+            self.root.afficherTexte(f"{i+1}: {self.word_list[i]}", 670, 310+20*i, "black", 22)
+
+    def result_command(self):
+        from Game import Game
+        game = Game(french_words)
+        result_list, score = game.calculate_result_score(self.word_list)
+        result_list = ["TRUE" if i == 1 else "FALSE" for i in result_list]
+        for i in range(len(result_list)):
+            self.root.afficherTexte(f"{i + 1}: {result_list[i]}", 875, 310 + 20 * i, "black", 22)
+        self.root.afficherTexte(f"Accuracy/Précision：{format(score,'.2f')}%", 900, 525, "black", 15)
         print(self.word_list)
-        return self.word_list
+        print(self.word_list[0] in french_words)
+
+    def restart_command(self):
+        self.word_list = []  # 清空已输入的单词
+        self.letter_list = []  # 清空当前输入
+        self.matrix = self.game.generate_board()  # 重新生成游戏棋盘
+        self.root.supprimer()  # 清空所有绘制的内容
+        self.initialization()  # 重新绘制界面
+        self.letter_factory()  # 重新生成字母按钮
+
+
     def letter_factory(self):
         """Letter Button: let player to chose their letters"""
         for i in range(4):
@@ -54,9 +82,15 @@ class GUI:
                                   command=self.soumettre_command)
         soumettre_button.place(x=825, y=200, width=80, height=30)
 
-    """API"""
-    def get_word_list(self):
-        return self.word_list
+        """ Rsult Button: generate the result"""
+        result_button = tk.Button(self.root, text='Resultat', font=("Arial", 10, "bold"),
+                                     command=self.result_command)
+        result_button.place(x=675, y=565, width=80, height=30)
+
+        """ Rdstart Button: Restart the game"""
+        restart_button = tk.Button(self.root, text='Restart', font=("Arial", 10, "bold"),
+                                  command=self.restart_command)
+        restart_button.place(x=825, y=565, width=80, height=30)
 
     def run(self):
         self.initialization()
