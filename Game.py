@@ -9,9 +9,15 @@ class Game:
         self.probability = [8.45, 1.06, 3.03, 3.55, 17.26, 1.11, 1.23, 1.11, 7.34, 0.34,
                             0.05, 5.46, 2.97, 7.13, 5.26, 2.79, 1.36, 6.55, 7.91, 7.11,
                             6.05, 1.83, 0.04, 0.42, 0.30, 0.15]
+        self.probability_2= [0.0851, 0.0426, 0.0638, 0.0638, 0.1277,  # A - E
+                             0.0213, 0.0106, 0.0213, 0.0319, 0.0106,  # F - J
+                             0.0000, 0.0426, 0.0426, 0.0319, 0.0213,  # K - O
+                             0.0213, 0.0106, 0.0638, 0.0638, 0.0638,  # P - T
+                             0.0213, 0.0213, 0.0106, 0.0106, 0.0000,  # U - Y
+                             0.0106]  # Z
 
     def generate_board(self):
-        board = [[rnd.choices(self.alphabet,self.probability) [0]
+        board = [[rnd.choices(self.alphabet,self.probability_2) [0]
                   for _ in range(4)] for _ in range(4)]
         return board
 
