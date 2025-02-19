@@ -1,16 +1,15 @@
 from tkiteasy import *
 import tkinter as tk
 import pandas as pd
+import time
 
 df = pd.read_csv('./dictionnaire_fr.csv')
 french_words = set(df.iloc[:, 0])
 
-# data = {"word": ["nul", "non"]}
-# french_words = set(pd.DataFrame(data).iloc[:, 0])
-
 class GUI:
     def __init__(self, game):
         self.game = game
+        self.state = True
         self.root = ouvrirFenetre(1000,600)
         self.matrix = game.generate_board()
         self.letter_list = []
@@ -55,12 +54,8 @@ class GUI:
         print(self.word_list[0] in french_words)
 
     def restart_command(self):
-        self.word_list = []  # 清空已输入的单词
-        self.letter_list = []  # 清空当前输入
-        self.matrix = self.game.generate_board()  # 重新生成游戏棋盘
-        self.root.supprimer()  # 清空所有绘制的内容
-        self.initialization()  # 重新绘制界面
-        self.letter_factory()  # 重新生成字母按钮
+        self.state = False
+        self.root.quit()
 
 
     def letter_factory(self):
