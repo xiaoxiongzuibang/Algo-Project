@@ -6,9 +6,9 @@ from itertools import chain
 df = pd.read_csv('dictionnaire_fr.csv')
 french_words = list(df.iloc[:, 0].str.strip())
 
-def available(position: list) -> bool:
+def available(position: list, prelist: list) -> bool:
     '''Judge position'''
-    return 0 <= position[0] <= 3 and 0 <= position[1] <= 3
+    return 0 <= position[0] <= 3 and 0 <= position[1] <= 3 and position not in prelist
 
 def monte_carlo_simulation(epoches: int, steps: int) -> list:
     '''
@@ -27,15 +27,20 @@ def monte_carlo_simulation(epoches: int, steps: int) -> list:
                 a = 0
                 position_list = [[i,j]]
                 current_i, current_j = i, j
+                time = 0
                 while a < steps-1:
                     dir = random.choice(direction)
-                    if available([current_i+dir[0], current_j+dir[1]]):
+                    if available([current_i+dir[0], current_j+dir[1]], position_list):
                         new_position = [current_i+dir[0], current_j+dir[1]]
                         position_list.append(new_position)
                         current_i, current_j = new_position[0], new_position[1]
                         a += 1
                     else:
                         pass
+                    time += 1
+                    if time == 100:
+                        position_list.append([i,j])
+                        break
                 simulation_list.append(position_list)
             simulation_path.append(simulation_list)
     return simulation_path
