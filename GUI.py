@@ -1,7 +1,8 @@
 from tkiteasy import *
 import tkinter as tk
-import pandas as pd
-import time
+from tkinter import messagebox
+import pandas as pd # type: ignore
+from MonteCarloSimulation import *
 
 df = pd.read_csv('./dictionnaire_fr.csv')
 french_words = set(df.iloc[:, 0])
@@ -14,6 +15,7 @@ class GUI:
         self.matrix = game.generate_board()
         self.letter_list = []
         self.word_list = []
+        self.result = []
 
     def initialization(self):
         self.root.dessinerRectangle(0, 0, 1000, 600, "orange")
@@ -29,10 +31,18 @@ class GUI:
         self.root.dessinerLigne(600, 550, 1000, 550, "black", 5)
         self.root.dessinerLigne(800, 250, 800, 550, "black", 5)
 
+        '''Compute the correct answer'''
+        for i in range(2, 6):
+            simulation_path = monte_carlo_simulation(10000, i)
+            transform_result = transformer(self.matrix, simulation_path)
+            words = next(french_words, transform_result)
+            self.result.append(words)
+
     def letter_command(self, letter):
         self.letter_list.append(letter)
         letter_id = self.root.afficherTexte(letter, 800, 150, "black", 50)
         self.root.after(250, lambda: self.root.supprimer(letter_id))
+        
     def confirmer_command(self):
         word = "".join(self.letter_list)
         self.letter_list = []
@@ -50,8 +60,8 @@ class GUI:
         for i in range(len(result_list)):
             self.root.afficherTexte(f"{i + 1}: {result_list[i]}", 875, 310 + 20 * i, "black", 22)
         self.root.afficherTexte(f"Accuracy/Précision：{format(score,'.2f')}%", 900, 525, "black", 15)
-        print(self.word_list)
-        print(self.word_list[0] in french_words)
+        messagebox.showinfo('Resultat', f"These words are correct: {self.result}")
+
 
     def restart_command(self):
         self.state = False
