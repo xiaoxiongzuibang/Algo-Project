@@ -31,6 +31,7 @@ class Game:
 ##find all valid words on board
 
     def find_words(self, board, i, j, visited, current_word, found_words):
+        #this condition is aimed to cut the prefix in usage of prefix-trie
         if not self.trie.starts_with(current_word):
             return
 
@@ -44,6 +45,7 @@ class Game:
         for dx, dy in directions:
             ni, nj = i+ dx, j + dy
             if 0 <= ni < 4 and 0 <= nj < 4 and not visited[ni][nj]:
+            #condition to ensure element are always on the board of4*4 and not visited
                 visited[ni][nj] = True
                 self.find_words(board, ni, nj, visited, current_word + board[ni][nj], found_words)
                 visited[ni][nj] = False
@@ -52,7 +54,10 @@ class Game:
         found_words = set()
         for i in range(4):
             for j in range(4):
+                #for each element
+                # started by construct a matrix to record whicih position is alread visited
                 visited = [[False]*4 for k in range(4)]
+                #if a postion is visted , we record it's position as "True"
                 visited[i][j] = True
                 self.find_words(board, i, j, visited, board[i][j], found_words)
         return list(found_words)
