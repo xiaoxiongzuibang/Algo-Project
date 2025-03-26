@@ -1,0 +1,35 @@
+# macOS 系统文件
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# 缩略图文件
+._*
+
+# macOS Finder 文件
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+
+# Windows 系统文件
+Thumbs.db
+ehthumbs.db
+
+# Python 缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+
+# 虚拟环境目录（根据你的项目配置选择适当的目录名称）
+.env
+.venv
+env/
+venv/
+
+# 打包和构建目录
+build/
+dist/
+*.egg-info/
