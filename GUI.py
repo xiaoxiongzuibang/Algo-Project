@@ -1,7 +1,7 @@
 from tkiteasy import *
 import tkinter as tk
 from tkinter import messagebox
-import pandas as pd # type: ignore
+import pandas as pd
 from MonteCarloSimulation import *
 
 df = pd.read_csv('./dictionnaire_fr.csv')
