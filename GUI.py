@@ -1,8 +1,9 @@
 from tkiteasy import *
 import tkinter as tk
 from tkinter import messagebox
-import pandas as pd
+import pandas as pd # type: ignore
 from MonteCarloSimulation import *
+import time
 
 df = pd.read_csv('./dictionnaire_fr.csv')
 french_words = set(df.iloc[:, 0])
@@ -73,7 +74,9 @@ class GUI:
         for i in range(len(result_list)):
             self.root.afficherTexte(f"{i + 1}: {result_list[i]}", 875, 310 + 20 * i, "black", 22)
         self.root.afficherTexte(f"Accuracy/Précision：{format(score,'.2f')}%", 900, 525, "black", 15)
-        messagebox.showinfo('Resultat', f"These words are correct: {self.result}")
+        self.end_time = time.time()
+        total_time = self.end_time - self.start_time
+        messagebox.showinfo('Resultat', f"Total Time: {round(total_time,2)}second\nThese words are correct: {self.result}")
 
 
     def restart_command(self):
@@ -112,6 +115,8 @@ class GUI:
         restart_button.place(x=825, y=565, width=80, height=30)
 
     def run(self):
+        self.start_time = time.time()
         self.initialization()
         self.letter_factory()
         self.root.mainloop()
+
