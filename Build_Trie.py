@@ -23,7 +23,7 @@ class Trie:
 
 
     def starts_with(self, prefix):
-        """前缀是否存在"""
+    # check if the prefix of current word exisit
         node = self.root
         prefix = prefix.lower()
         for char in prefix:
@@ -35,9 +35,9 @@ class Trie:
     def insert_dic(self, dictionary):
         for word in dictionary:
             self.insert_word(word)
+    # insert the dictionary to the form "trie"
 
-
-    def search(self, word): #
+    def search(self, word): # test
         node = self.root
         for letter in word:
             if letter not in node:
