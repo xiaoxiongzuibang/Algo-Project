@@ -4,10 +4,10 @@ from CreatSet import *
 import os
 import sys
 
-df = pd.read_csv('dictionnaire_fr.csv')
-french_words = df.iloc[:, 0]
+def main():
+    df = pd.read_csv('dictionnaire_fr.csv')
+    french_words = df.iloc[:, 0]
 
-if __name__ == '__main__':
     while True:
         game = Game(french_words)
         gui = GUI(game)
@@ -16,3 +16,6 @@ if __name__ == '__main__':
             os.execv(sys.executable, ['python'] + sys.argv)
         else:
             break
+
+if __name__ == '__main__':
+    main()
