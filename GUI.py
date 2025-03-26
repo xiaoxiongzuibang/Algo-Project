@@ -16,6 +16,7 @@ class GUI:
         self.letter_list = []
         self.word_list = []
         self.result = []
+        self.button_list = []
 
     def initialization(self):
         self.root.dessinerRectangle(0, 0, 1000, 600, "orange")
@@ -31,22 +32,34 @@ class GUI:
         self.root.dessinerLigne(600, 550, 1000, 550, "black", 5)
         self.root.dessinerLigne(800, 250, 800, 550, "black", 5)
 
-        '''Compute the correct answer'''
-        for i in range(2, 6):
-            simulation_path = monte_carlo_simulation(10000, i)
-            transform_result = transformer(self.matrix, simulation_path)
-            words = next(french_words, transform_result)
-            self.result.append(words)
+        from Game import Game
+        game = Game(french_words)
+        found_words = game.generate_all_valid_words(self.matrix)
+        self.result = found_words
 
-    def letter_command(self, letter):
-        self.letter_list.append(letter)
-        letter_id = self.root.afficherTexte(letter, 800, 150, "black", 50)
-        self.root.after(250, lambda: self.root.supprimer(letter_id))
+        # '''Compute the correct answer'''
+        # for i in range(2, 6):
+        #     simulation_path = monte_carlo_simulation(10000, i)
+        #     transform_result = transformer(self.matrix, simulation_path)
+        #     words = next(french_words, transform_result)
+        #     self.result.append(words)
+
+    def letter_command(self, letter, button):
+        if button['state'] != tk.DISABLED:
+            button.config(bg="gray", state=tk.DISABLED)
+            self.letter_list.append(letter)
+            letter_id = self.root.afficherTexte(letter, 800, 150, "black", 50)
+            self.root.after(250, lambda: self.root.supprimer(letter_id))
+        else:
+            messagebox.showwarning("Attention", "You can not chose the same letter twice")
         
     def confirmer_command(self):
         word = "".join(self.letter_list)
         self.letter_list = []
         self.word_list.append(word)
+        for button in self.button_list:
+            button.config(state=tk.NORMAL, bg="SystemButtonFace")
+        
 
     def soumettre_command(self):
         for i in range(len(self.word_list)):
@@ -73,9 +86,10 @@ class GUI:
         for i in range(4):
             for j in range(4):
                 letter = self.matrix[i][j]
-                letter_button = tk.Button(self.root, text=letter,font=("Arial", 25, "bold"),
-                                          command=lambda l=letter: self.letter_command(l))
+                letter_button = tk.Button(self.root, text=letter,font=("Arial", 25, "bold"))
+                letter_button.config(command=lambda l=letter, b = letter_button: self.letter_command(l, b))
                 letter_button.place(x=i*150+50, y=j*150+50, width=70, height=70)
+                self.button_list.append(letter_button)
 
         """ Confirmer Button: let player to finish one particular word"""
         confirmer_button = tk.Button(self.root, text='CONFIRMER', font=("Arial", 10, "bold"),
