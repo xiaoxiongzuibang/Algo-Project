@@ -1,13 +1,30 @@
 # README
-section1, 生产流程
-1. 读取csv文件，生成名为“french_words"的set
-2. 构建 Game 类，负责游戏的逻辑运行
-   1. 依照概率生成一个4*4的字母矩阵
-   2. 检查用户找到的单词 (word_list)是否在 french_words 中 
-   3. 尝试遍历 board 并且找出所有可能的单词：found_word 
-   4. 引入 prefix-trie,增加前缀剪枝树，提升计算效率 
-4. 构建 UI 类
-5. 将French——words转换为一个前缀树结构
+
+## Répartition des tâches
+
+- **Zou Ruixuan** était chargé de la logique en arrière-plan du projet (développement de `Game.py`). Il a réalisé les tâches suivantes :
+  - Génération des lettres selon une distribution de probabilité.
+  - Vérification des entrées fournies par l'utilisateur.
+  - Implémentation d'une méthode de parcours exhaustif des réponses correctes.
+  - Construction d'un arbre préfixe (Trie) pour améliorer l'efficacité de la recherche.
+
+- **Yang Yinxiaotian** s’est occupé de la partie interface utilisateur (développement de `GUI.py`). Il a accompli les tâches suivantes :
+  - Initialisation de l'interface graphique.
+  - Gestion des interactions utilisateur.
+  - Transmission des données vers la partie logique du projet.
+  - Mise en place d’une méthode de parcours utilisant une simulation Monte Carlo pour générer des solutions alternatives.
+
+## Points forts du projet
+
+- Très bonne collaboration au sein de l’équipe permettant un déroulement efficace et ordonné conformément au planning initial.
+- Implémentation de plusieurs méthodes de recherche de solutions :
+  - Parcours classique (exhaustif)
+  - Méthode par arbre préfixe (Trie)
+  - Simulation Monte Carlo
+
+## Axes d'amélioration
+
+- En raison d'une maîtrise insuffisante du français, les développeurs n'ont pas pu implémenter un « mode compétitif à deux joueurs » satisfaisant.
 
 
 
