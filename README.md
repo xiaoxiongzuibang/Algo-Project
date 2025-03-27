@@ -12,6 +12,7 @@
   - Initialisation de l'interface graphique.
   - Gestion des interactions utilisateur.
   - Transmission des données vers la partie logique du projet.
+  - Réalisation de fonctionnalités supplémentaires telles que le clignotement des mots sélectionnés, la possibilité de redémarrer la partie et l'ajout d'un chronomètre.
   - Mise en place d’une méthode de parcours utilisant une simulation Monte Carlo pour générer des solutions alternatives.
 
 ## Points forts du projet
@@ -25,7 +26,3 @@
 ## Axes d'amélioration
 
 - En raison d'une maîtrise insuffisante du français, les développeurs n'ont pas pu implémenter un « mode compétitif à deux joueurs » satisfaisant.
-
-
-
-
