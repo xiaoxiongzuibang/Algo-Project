@@ -45,7 +45,7 @@ class GUI:
         if self.last_coord is not None:
             last_row, last_col = self.last_coord
             if abs(row - last_row) > 1 or abs(col - last_col) > 1:
-                messagebox.showwarning("Attention", "You can not chose this letter!")
+                messagebox.showwarning("Attention", "请选择与上一个按钮相邻或对角的按钮！")
                 return 
 
         self.last_coord = (row, col)
@@ -72,14 +72,15 @@ class GUI:
     def result_command(self):
         from Game import Game
         game = Game(french_words)
-        result_list, score = game.calculate_result_score(self.word_list)
-        result_list = ["TRUE" if i == 1 else "FALSE" for i in result_list]
+        valid_words, score = game.calculate_result_score(self.word_list)
+       
+        result_list = ["TRUE" if word in valid_words else "FALSE" for word in self.word_list]
         for i in range(len(result_list)):
             self.root.afficherTexte(f"{i + 1}: {result_list[i]}", 875, 310 + 20 * i, "black", 22)
-        self.root.afficherTexte(f"Accuracy/Précision：{format(score,'.2f')}%", 900, 525, "black", 15)
+        self.root.afficherTexte(f"Accuracy/Précision：{format(score, '.2f')}%", 900, 525, "black", 15)
         self.end_time = time.time()
         total_time = self.end_time - self.start_time
-        messagebox.showinfo('Resultat', f"Total Time: {round(total_time, 2)} seconds\nThese words are correct: {self.result}")
+        messagebox.showinfo('Resultat', f"Total Time: {round(total_time, 2)} seconds\nThese words are correct: {self.result} {result_list}")
 
     def restart_command(self):
         self.state = False
@@ -122,4 +123,7 @@ class GUI:
         self.initialization()
         self.letter_factory()
         self.root.mainloop()
+
+
+
 
