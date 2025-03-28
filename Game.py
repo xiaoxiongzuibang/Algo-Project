@@ -63,11 +63,11 @@ class Game:
         return list(found_words)
 
 # example
-game = Game(french_words)
-board = game.generate_board()
-found_words = game.generate_all_valid_words(board)
-valid_words, score = game.calculate_result_score(found_words)
+# game = Game(french_words)
+# board = game.generate_board()
+# found_words = game.generate_all_valid_words(board)
+# valid_words, score = game.calculate_result_score(found_words)
 
-print(f"nombre des mots valide = : {len(valid_words)}")
-print(f"score: {score:.2f}%")
-print("les mots sont:", valid_words)
+# print(f"nombre des mots valide = : {len(valid_words)}")
+# print(f"score: {score:.2f}%")
+# print("les mots sont:", valid_words)
