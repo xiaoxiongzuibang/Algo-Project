@@ -45,7 +45,7 @@ class GUI:
         if self.last_coord is not None:
             last_row, last_col = self.last_coord
             if abs(row - last_row) > 1 or abs(col - last_col) > 1:
-                messagebox.showwarning("Attention", "请选择与上一个按钮相邻或对角的按钮！")
+                messagebox.showwarning("Attention", "You can not chose this letter!")
                 return 
 
         self.last_coord = (row, col)
