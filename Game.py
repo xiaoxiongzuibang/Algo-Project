@@ -31,7 +31,9 @@ class Game:
 ##find all valid words on board
 
     def find_words(self, board, i, j, visited, current_word, found_words):
+        # 需要输入的元素有：1. 棋盘 2. 位置 3. 是否被查询 4. 当前自己生产的单词（递归生成），5.结果记录结果的set
         #this condition is aimed to cut the prefix in usage of prefix-trie
+        #如果当前的字符串不再 树上 ，则直接跳过
         if not self.trie.starts_with(current_word):
             return
 
@@ -48,6 +50,7 @@ class Game:
             #condition to ensure element are always on the board of4*4 and not visited
                 visited[ni][nj] = True
                 self.find_words(board, ni, nj, visited, current_word + board[ni][nj], found_words)
+                #通过递归去逐渐生产 “current——word”
                 visited[ni][nj] = False
 
     def generate_all_valid_words(self, board):
